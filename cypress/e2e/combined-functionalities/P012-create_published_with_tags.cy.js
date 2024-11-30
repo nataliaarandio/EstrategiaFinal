@@ -44,7 +44,35 @@ describe('Content Management: Create and Verify Post', () => {
         cy.get('div.posts-list.gh-list.feature-memberAttribution')
             .should('contain', titleFake);
 
-        //Delete post
+        const longTagName = faker.lorem.words(1);
+
+        cy.visit(LOCAL_HOST + "#/tags/new/");
+
+
+        cy.get('input[data-test-input="tag-name"]').type(longTagName);
+        cy.get('input[data-test-input="accentColor"]')
+            .type("000000".replace(/^#/, ''));
+        cy.get('textarea[data-test-input="tag-description"]').type(faker.lorem.paragraphs(1));
+        cy.wait(1000);
+
+        cy.get('[data-test-button="save"]').click();
+
+        cy.get('[data-test-nav-custom="posts-Published"]').click();
+
+        cy.get('div.posts-list.gh-list.feature-memberAttribution').first().click();
+        cy.get('[data-test-psm-trigger]').click();
+
+        cy.get('div#tag-input').click().type(longTagName + '{enter}')
+        cy.wait(1000);
+
+        cy.get('[data-test-breadcrumb]').click();
+
+        cy.get('[data-test-nav="tags"]').click();
+
+        cy.get('.gh-list-row.gh-tags-list-item').first().should('contain', "1 post");
+
+
+        cy.visit(LOCAL_HOST + "#/posts");
         cy.get('.gh-list-row.gh-posts-list-item.gh-post-list-plain-status').each(
             ($el, index, $list) => {
                 cy.get('div.posts-list.gh-list.feature-memberAttribution').first().click();
@@ -53,5 +81,29 @@ describe('Content Management: Create and Verify Post', () => {
                 cy.get('[data-test-button="delete-post-confirm"]').click();
             }
         )
+
+        cy.get('[data-test-nav="tags"]').click();
+        cy.get('section.view-container.content-list').then($section => {
+            if ($section.find('a[title="Edit tag"]').length > 0) {
+                cy.get('a[title="Edit tag"]').first().click();
+                cy.get('button.gh-btn.gh-btn-red.gh-btn-icon[data-test-button="delete-tag"]').click();
+                cy.get('div.modal-content[data-test-modal="confirm-delete-tag"]').contains('Delete').click();
+                deleteTagIfExists();
+            }
+        });
+
     });
+
 });
+
+
+function deleteTagIfExists() {
+    cy.get('section.view-container.content-list').then($section => {
+        if ($section.find('a[title="Edit tag"]').length > 0) {
+            cy.get('a[title="Edit tag"]').first().click();
+            cy.get('button.gh-btn.gh-btn-red.gh-btn-icon[data-test-button="delete-tag"]').click();
+            cy.get('div.modal-content[data-test-modal="confirm-delete-tag"]').contains('Delete').click();
+            deleteTagIfExists();
+        }
+    });
+}
