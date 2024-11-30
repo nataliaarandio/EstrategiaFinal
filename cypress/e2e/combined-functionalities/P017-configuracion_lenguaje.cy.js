@@ -15,60 +15,15 @@ describe('Member Management: Add and Verify Member', () => {
     it('Add a new member and verify it appears in the list of members', () => {
 
         cy.visit(LOCAL_HOST + "#/dashboard");
-        cy.wait(4000);
 
-        // Enter the members section
-        cy.get('[data-test-nav="members"]').click();
-        cy.url().should('include', '/ghost/#/members');
+        cy.get('[data-test-nav="settings"]').click();
 
-        // Create a new member
-        cy.get('[data-test-new-member-button]').click();
-        cy.wait(2000);
-        cy.url().should('include', '/ghost/#/members/new');
+        cy.get('[data-testid="publication-language"]').find('[type="button"]').click();
 
-        let name = faker.name.firstName() + ' ' + faker.name.lastName();
-        let email = faker.internet.email();
-        let note = faker.lorem.sentence();
-        let label = faker.animal.cat();
-        cy.get('[data-test-input="member-name"]').type(name);
-        cy.get('[data-test-input="member-email"]').type(email);
-        cy.get('.ember-power-select-trigger-multiple-input').type(label);
-        cy.get('[data-test-input="member-note"]').type(note);
+        cy.get('[placeholder="Site language"]').clear().type('fjf032j9');
 
-        cy.get('[data-test-button="save"]').click();
+        cy.get('[data-testid="publication-language"]').find('[type="button"]').next().click();
 
-        cy.get('[data-test-nav="members"]').click();
-
-        cy.get('[data-test-list="members-list-item"]').first().invoke('text').should('include', name);
-
-        // Create a new member
-        cy.get('[data-test-new-member-button]').click();
-        cy.wait(2000);
-        cy.url().should('include', '/ghost/#/members/new');
-
-        // intengo crear nuevmanete el miembro con el mismo name
-        cy.get('[data-test-input="member-name"]').type(name);
-        cy.get('[data-test-input="member-email"]').type(email);
-        cy.get('.ember-power-select-trigger-multiple-input').type(label);
-        cy.get('[data-test-input="member-note"]').type(note);
-
-        cy.get('[data-test-button="save"]').click();
-
-        cy.get('div.gh-cp-member-email-name').should('contain', 'Member already exists. Attempting to add member with existing email address');
-
-        cy.get('[data-test-nav="members"]').click();
-
-        cy.get('[data-test-leave-button]').click();
-
-        //Delete member
-        cy.get('[data-test-list="members-list-item"]').each(($el, index, $list) => {
-            cy.get('[data-test-list="members-list-item"]').first().click();
-            cy.get('[data-test-button="member-actions"]').click();
-            cy.get('[data-test-button="delete-member"').click();
-            cy.get('[data-test-button="confirm"]').click();
-            cy.wait(1000);
-        });
-
-        cy.url().should('include', '/ghost/#/members');
+        cy.get('[data-testid="publication-language"]').should('contain', 'fjf032j9');
     });
 });
