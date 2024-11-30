@@ -67,24 +67,10 @@ describe('Content Management: Create and Verify Post', () => {
 
         cy.get('[data-test-breadcrumb]').click();
 
-        cy.visit(LOCAL_HOST + "#/tags");
+        cy.get('[data-test-nav="tags"]').click();
         cy.wait(1000);
         cy.get('.gh-list-row.gh-tags-list-item').first().should('contain', "1 post");
 
-
-        cy.visit(LOCAL_HOST + "#/posts");
-        //Delete post
-        cy.get('.gh-list-row.gh-posts-list-item.gh-post-list-plain-status').each(
-            ($el, index, $list) => {
-                cy.get('div.posts-list.gh-list.feature-memberAttribution').first().click();
-                cy.get('[data-test-psm-trigger]').click();
-                cy.get('[data-test-button="delete-post"]').click();
-                cy.get('[data-test-button="delete-post-confirm"]').click();
-            }
-        )
-
-        cy.visit(LOCAL_HOST + "#/tags");
-        cy.wait(1000);
         cy.get('section.view-container.content-list').then($section => {
             if ($section.find('a[title="Edit tag"]').length > 0) {
                 cy.get('a[title="Edit tag"]').first().click();
