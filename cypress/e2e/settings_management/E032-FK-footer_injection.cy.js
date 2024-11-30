@@ -1,9 +1,9 @@
 import { faker } from '@faker-js/faker';
 
-describe('Modify Site Name', () => {
+describe('Modify footer injection', () => {
 
     const LOCAL_HOST = Cypress.env('LOCAL_HOST');
-    const SCREENSHOT_PATH = 'E016-modify_site_name_before/modify_site_name';
+    const SCREENSHOT_PATH = 'E016-modify_footer_injection_before/modify_site_name';
     let screenshotCounter = 1;
 
     function takeScreenshot() {
@@ -15,7 +15,7 @@ describe('Modify Site Name', () => {
         cy.LoginGhost();
     });
 
-    it('Modify the site name with valid and invalid data', () => {
+    it('Modify footer injection with valid data', () => {
         cy.visit(LOCAL_HOST + "#/settings");
 
         // Scenarios with Faker.js
