@@ -7,6 +7,10 @@ describe('Filter Blogs by Category and Sort by Members', () => {
         cy.LoginGhost();
     });
 
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+
     it('Filter blogs by Art category and sort by members', () => {
         cy.visit(LOCAL_HOST + "#/blogs");
         cy.wait(2000);

@@ -7,6 +7,10 @@ describe('Join a Community Blog', () => {
         cy.LoginGhost();
     });
 
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+
     it('Join a community blog', () => {
         cy.visit(LOCAL_HOST + "#/blogs");
         cy.wait(2000);

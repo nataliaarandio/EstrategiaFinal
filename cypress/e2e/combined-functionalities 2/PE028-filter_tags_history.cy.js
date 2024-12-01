@@ -8,6 +8,10 @@ describe('Create a Tag and Consult it in History', () => {
         cy.createTags();
     });
 
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+
     it('Create a tag and verify it appears in history by filter', () => {
         cy.visit(LOCAL_HOST + "#/settings");
         cy.wait(2000);

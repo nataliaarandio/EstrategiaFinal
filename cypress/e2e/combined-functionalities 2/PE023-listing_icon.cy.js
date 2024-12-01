@@ -1,6 +1,6 @@
 const mockData = require('./MOCK_DATA.json');
 
-describe('Search Functionality: Handle Long Input without Spaces', () => {
+describe('verifier icon listing', () => {
     const LOCAL_HOST = Cypress.env('LOCAL_HOST');
 
     beforeEach("Precondition: Admin login", () => {
@@ -11,30 +11,16 @@ describe('Search Functionality: Handle Long Input without Spaces', () => {
         return false;
     });
 
-    it('Insert a long search term without spaces and verify overflow handling', () => {
+    it('verifier icon listing', () => {
         cy.visit(LOCAL_HOST + "#/dashboard");
         cy.wait(2000);
 
-        cy.get('[data-test-nav="explore"]').click();
-        cy.wait(2000);
-
-
-        if (Cypress.config("baseUrl") !== "http://localhost:2369") {
-            cy.origin('http://localhost:2369', () => {
-                // Código para interactuar con elementos dentro de un iframe
-                cy.get('input.ais-SearchBox-input')
-                    .click().type("ThisIsAVeryLongSearchTermWithoutAnySpacesToTestTheSearchFunctionality");
-            });
-        } else {
-            // Usa directamente el selector si no estás en un iframe
-            cy.get('input.ais-SearchBox-input')
-                .click().type("ThisIsAVeryLongSearchTermWithoutAnySpacesToTestTheSearchFunctionality");
-        }
-
+        cy.visit(LOCAL_HOST + "#/explore/connect");
         cy.wait(1000);
 
-        // Verificación del comportamiento del previsualizador de búsqueda
-        cy.get('.search-preview').should('be.visible');
+        cy.get('[data-test-button="submit-explore"]').click();
+        cy.wait(1000);
 
+        cy.get('img[src$=".png"]').should('exist');
     });
 });
