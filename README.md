@@ -1,4 +1,4 @@
-# EstrategiaFinal
+# Estrategia final
 
 ## Prerrequisitos
 
