@@ -12,6 +12,7 @@ Antes de comenzar, asegúrate de tener lo siguiente instalado en tu sistema:
   ```
 - **Ghost Admin**
 - **npm install -D cypress-iframe**
+- **npm install faker**
 
 ## Pasos para ejecutar las pruebas
 
