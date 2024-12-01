@@ -22,22 +22,16 @@ Sigue estos pasos para ejecutar las pruebas de Cypress:
    cd EstrategiaFinal
    ```
 
-3. **Accede a la carpeta de Cypress**:
-
-   ```bash
-   cd cypress
-   ```
-
-4. **Instala las dependencias** necesarias ejecutando:
+2. **Instala las dependencias** necesarias ejecutando:
 
    ```bash
    npm install
    ```
 
-5. **Inicia Cypress** con el siguiente comando:
+3. **Inicia Cypress** con el siguiente comando:
 
    ```bash
    npx cypress open
    ```
 
-6. **Ejecuta las pruebas** de la carpeta `e2e`. Una vez que se abra la interfaz de Cypress, selecciona las pruebas que deseas ejecutar.
+4. **Ejecuta las pruebas** de la carpeta `e2e`. Una vez que se abra la interfaz de Cypress, selecciona las pruebas que deseas ejecutar.
