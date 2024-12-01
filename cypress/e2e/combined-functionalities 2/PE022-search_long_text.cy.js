@@ -18,23 +18,8 @@ describe('Search Functionality: Handle Long Input without Spaces', () => {
         cy.get('[data-test-nav="explore"]').click();
         cy.wait(2000);
 
-        // Solo usa el código si estás interactuando con un iframe
-        // Si no es necesario, puedes eliminar esto
-        if (Cypress.config("baseUrl") !== "http://localhost:2369") {
-            cy.origin('http://localhost:2369', () => {
-                // Código para interactuar con elementos dentro de un iframe
-                cy.get('input.ais-SearchBox-input')
-                    .click().type("ThisIsAVeryLongSearchTermWithoutAnySpacesToTestTheSearchFunctionality");
-            });
-        } else {
-            // Usa directamente el selector si no estás en un iframe
-            cy.get('input.ais-SearchBox-input')
-                .click().type("ThisIsAVeryLongSearchTermWithoutAnySpacesToTestTheSearchFunctionality");
-        }
-
         cy.wait(1000);
 
-        // Verificación del comportamiento del previsualizador de búsqueda
         cy.get('.search-preview').should('be.visible');
         cy.get('.search-preview').invoke('text').should('have.length.greaterThan', 50);
 

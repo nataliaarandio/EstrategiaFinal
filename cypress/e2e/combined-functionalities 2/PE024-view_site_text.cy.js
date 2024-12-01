@@ -26,11 +26,10 @@ describe('Preview Content: Verify Handling of Long Text', () => {
         cy.get('button[data-test-button="preview"]').click();
         cy.wait(1000);
 
-        // Verificación de comportamiento del previsualizador
-        cy.get('.preview-container').should('not.have.class', 'overflow-hidden'); // Comprobar que no esté ocultando información
-        cy.get('.preview-container').should('contain', 'some recognizable part of the long text'); // Verifica parte del texto
+        cy.get('.preview-container').should('not.have.class', 'overflow-hidden');
+        cy.get('.preview-container').should('contain', 'some recognizable part of the long text');
 
-        // Validar que el previsualizador muestra adecuadamente el texto
+
     });
 
 });
