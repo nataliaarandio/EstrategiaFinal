@@ -11,6 +11,7 @@ Antes de comenzar, asegúrate de tener lo siguiente instalado en tu sistema:
   nvm use 18.20.4
   ```
 - **Ghost Admin**
+- **npm install -D cypress-iframe**
 
 ## Pasos para ejecutar las pruebas
 
