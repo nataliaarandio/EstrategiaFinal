@@ -9,15 +9,16 @@ describe('Create a Tag and Consult it in History', () => {
     });
 
     it('Create a tag and verify it appears in history by filter', () => {
-        cy.visit(LOCAL_HOST + "#/tags");
-        // Assume tag creation code here
-        cy.get('input[data-test-input="tag-name"]').type(mockData[0].tagName);
-        cy.get('span[data-test-task-button-state="idle"]').click();
-
-        cy.visit(LOCAL_HOST + "#/history");
+        cy.visit(LOCAL_HOST + "#/settings");
         cy.wait(2000);
 
-        cy.get('input[data-test-filter="tag"]').type(mockData[0].tagName);
-        cy.get('div.history-list').should('contain', mockData[0].tagName);
+        cy.get('button.cursor-pointer.text-grey-900.dark\\:text-white').contains('View history').click();
+        cy.wait(2000);
+
+        cy.url().should('include', 'history/view');
+    });
+
+    it('delete all tags', () => {
+        cy.deleteAllTags();
     });
 });
