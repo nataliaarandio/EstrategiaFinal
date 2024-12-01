@@ -22,16 +22,22 @@ Sigue estos pasos para ejecutar las pruebas de Cypress:
    cd EstrategiaFinal
    ```
 
-2. **Instala las dependencias** necesarias ejecutando:
+2. **Ajusta el LocalHost** de Ghost en el archivo CypressConfig, Ejemplo:
+
+   ```bash
+   LOCAL_HOST: "http://localhost:2368/ghost/"
+   ```
+
+3. **Instala las dependencias** necesarias ejecutando:
 
    ```bash
    npm install
    ```
 
-3. **Inicia Cypress** con el siguiente comando:
+4. **Inicia Cypress** con el siguiente comando:
 
    ```bash
    npx cypress open
    ```
 
-4. **Ejecuta las pruebas** de la carpeta `e2e`. Una vez que se abra la interfaz de Cypress, selecciona las pruebas que deseas ejecutar.
+5. **Ejecuta las pruebas** de la carpeta `e2e`. Una vez que se abra la interfaz de Cypress, selecciona las pruebas que deseas ejecutar.
