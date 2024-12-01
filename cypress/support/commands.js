@@ -1,4 +1,6 @@
 import 'cypress-file-upload';
+import 'cypress-iframe';
+
 Cypress.Commands.add('LoginGhost', () => {
     cy.session("Login", () => {
         cy.visit(Cypress.env('LOCAL_HOST'));

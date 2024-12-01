@@ -16,7 +16,8 @@ module.exports = defineConfig({
       DESCRIPTION: 'This is a description for the new tag. It is a very long description that will be used to test the functionality of the tag creation process.',
       NEW_NAME_TAG: 'New Spectacular Tag 1 Edited',
       APIREST: "http://localhost:3006/api/data"
-
-    }
+    },
+    viewportWidth: 1920,
+    viewportHeight: 1080
   },
 });
