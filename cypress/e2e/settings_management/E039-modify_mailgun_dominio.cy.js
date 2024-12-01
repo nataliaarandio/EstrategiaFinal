@@ -34,6 +34,7 @@ describe('Configure Custom Integration description', () => {
         cy.contains('button', 'Save')
             .click();
 
+        cy.wait(2000)
         cy.get(
             '#admin-x-settings-scroller > div > div:nth-child(5) > div > div:nth-child(4) > div.flex.items-start.justify-between.gap-4 > div:nth-child(2) > div > button'
         ).click();
